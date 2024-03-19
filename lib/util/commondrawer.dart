@@ -51,7 +51,7 @@ class _CommonDrawerWidgetState extends State<CommonDrawerWidget> {
                             child: CachedNetworkImage(
                               fit: BoxFit.cover,
                               imageUrl:
-                              '${User.userImageUrlValueNotifier.value}',
+                              '${UserModule.userImageUrlValueNotifier.value}',
                               placeholder: (context, url) => Center(
                                 child: CircularProgressIndicator(),
                               ),
@@ -71,7 +71,7 @@ class _CommonDrawerWidgetState extends State<CommonDrawerWidget> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Text(
-                                '${User.userName}',
+                                '${UserModule.userName}',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
@@ -79,7 +79,7 @@ class _CommonDrawerWidgetState extends State<CommonDrawerWidget> {
                               ),
                               SizedBox(height: 4),
                               Text(
-                                '${User.userEmail}',
+                                '${UserModule.userEmail}',
                                 style: TextStyle(
                                   color: secondaryColor.shade200,
                                 ),

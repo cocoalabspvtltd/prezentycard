@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
       // SharedPreferences.setMockInitialValues({});
 
-      if (User.apiToken.isEmpty) await SharedPrefs.init();
+      if (UserModule.apiToken.isEmpty) await SharedPrefs.init();
    //   await EventData.initPath();
       await SharedPrefs.init();
       showProgress = true;
@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     });
   }
-  String accountId = User.userId;
+  String accountId = UserModule.userId;
   //ProfileBloc _profileBloc = ProfileBloc();
   bool? prepaidCardUserOrNot;
   bool?prepaidCardUserOrNotToken;

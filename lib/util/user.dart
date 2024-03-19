@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'chat_data.dart';
 
-class User {
+class UserModule {
   static String apiToken = '';
   static String userId = '';
   static String userName = '';

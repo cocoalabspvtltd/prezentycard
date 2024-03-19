@@ -7,9 +7,11 @@ import 'api_interceptor.dart';
 class ApiProvider {
   Dio? _dio;
 
-  static String baseUrl = isProduction
-      ? 'https://www.prezenty.in/prezenty/api/web/v1/' //live
-      : 'https://www.prezenty.in/prezenty-test/api/web/v1/'; //staging
+  static String baseUrl = "https://www.cocoalabs.in/PrepaidCardApp/";
+  //
+  // isProduction
+  //     ? 'https://www.prezenty.in/prezenty/api/web/v1/' //live
+  //     : 'https://www.prezenty.in/prezenty-test/api/web/v1/'; //staging
 
   ApiProvider() {
     BaseOptions options;

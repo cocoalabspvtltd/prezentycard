@@ -1,6 +1,6 @@
 class Apis {
-  static String registerUser = 'user/sign-up';
-  static String login = 'user/login';
+  static String registerUser = 'api/register';
+  static String login = 'api/login';
   static String socialLogin = 'user/social';
   static String resetPasswordSendOtp = 'user/forgot-password';
   static String resetPasswordVerifyOtp = 'user/verify-otp';
@@ -101,7 +101,7 @@ class Apis {
   static String resetWalletPin = "api/reset-mpin";
   static String getStateCode = "api/state-list";
 
-  static String getAllAvailableCardList = "api/prepaid-card-list";
+  static String getAllAvailableCardList = "api/prepaid-cards/list";
   static String getCardOffers = "api/card-offer-list";
   static String offers = "api/offers-list";
   static String blockCardNow = "api/prepaid/cards/card-status";

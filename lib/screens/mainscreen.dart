@@ -28,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   int _currentTab = 0;
   DateTime? currentBackPressTime;
-  String accountId = User.userId;
+  String accountId = UserModule.userId;
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
@@ -50,7 +50,7 @@ class _MainScreenState extends State<MainScreen> {
                 gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  colors: [Colors.yellow,Colors.indigo.shade900, ],
+                  colors: [Colors.teal,Colors.teal.shade900, ],
                 ),
               ),
             ),
@@ -100,7 +100,7 @@ class _MainScreenState extends State<MainScreen> {
                     radius: 25,
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
-                      imageUrl:'${User.userImageUrl}',
+                      imageUrl:'${UserModule.userImageUrl}',
                       // '${userData?.baseUrl}${userData?.userDetails?.imageUrl}',
                       imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(

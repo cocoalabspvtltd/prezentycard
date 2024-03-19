@@ -14,9 +14,9 @@ class ApiInterceptor extends Interceptor {
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     //var s1 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3OCwiZXhwIjoxNjM0MjI0NDMzLCJpc3MiOiJsb2NhbGhvc3QiLCJpYXQiOjE2MzE1OTQ2ODd9.mmWjnVHP3A1s0IK4LsT9FqxGsoONOUDqZK2n3lnaag8";
-    if (User.apiToken.isNotEmpty) {
+    if (UserModule.apiToken.isNotEmpty) {
       if(!options.headers.containsKey('authorization')) {
-        options.headers.addAll({"Authorization": "Bearer ${User.apiToken}"});
+        options.headers.addAll({"Authorization": "Bearer ${UserModule.apiToken}"});
       }
 
      // options.headers.addAll({"Authorization": "Bearer $s1"});

@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:prezentycardmodule/screens/prepaid%20card/applyprepaidcard.dart';
 
 import '../util/app_helper.dart';
 import '../util/user.dart';
@@ -17,6 +21,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  Random random = Random();
+  List<String> assetImages = [
+    'asset/image/badge1.png',
+    'asset/image/badge2.png',
+    'asset/image/bage3.png',
+    'asset/image/badge4.png',
+    // Add more image URLs as needed
+  ];
   Widget build(BuildContext context) {
     return  Scaffold(
       body: SingleChildScrollView(
@@ -36,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.topLeft,
-                        colors:[Colors.yellow,Colors.indigo.shade900, ],
+                        colors:[Colors.teal,Colors.teal.shade900, ],
                       ),
                     ),
                     padding: EdgeInsets.only(top: 10, left: 15, right: 15),
@@ -58,8 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(
-                                  bottom: 25, top: 10, left: 65),
-                              child: Text('USERNAME',
+                                  bottom: 25, top: 10, left: 30),
+                              child: Text('HELLO   ${UserModule.userName.toUpperCase()}',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 25,
@@ -123,8 +135,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           InkWell(
                               onTap: () async {
-                                // Get.to(() => ApplyPrepaidCardListScreen(
-                                //     isUpgrade: false));
+                                Get.to(() => Applyprepaidcardlist(
+                                ));
                               },
                               borderRadius:
                               BorderRadius.all(Radius.circular(40)),
@@ -133,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 50,
                                 decoration: BoxDecoration(
                                     gradient: LinearGradient(
-                                      colors: [Colors.indigo.shade900, Colors.yellow],
+                                      colors:[Colors.teal,Colors.teal.shade900, ],
                                       begin: Alignment.centerLeft,
                                       end: Alignment.centerRight,
                                     ),
@@ -149,11 +161,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(40))),
                                   ),
-                                  child: Text(
-                                    "Get your card",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.white,
+                                  child: GestureDetector(
+                                    onTap: (){ Get.to(() => Applyprepaidcardlist(
+                                    ));},
+                                    child: Text(
+                                      "Get your card",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -167,7 +183,50 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ]),
-        )
+        ),
+            Padding(
+              padding: const EdgeInsets.only(right: 208.0,top: 8),
+              child: Text(
+                "Offers on your card",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+        Center(
+          child: CarouselSlider(
+            options: CarouselOptions(
+              aspectRatio: 24 / 9,
+              viewportFraction: 0.8,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 5),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enlargeCenterPage: true,
+            ),
+            items: List.generate(
+              5, // Number of items in the slider
+                  (index) {
+                int randomIndex = random.nextInt(assetImages.length);
+                String assetImagePath = assetImages[randomIndex];
+                return Container(
+                  margin: EdgeInsets.all(5.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      assetImagePath,
+                      fit: BoxFit.cover,
+                      width: 1000.0,
+                    ),
+                  ),
+                );
+              },
+            ).toList(),
+          ),
+        ),
+
+
           ],
         )
 

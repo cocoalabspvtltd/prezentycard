@@ -4,10 +4,9 @@ import 'package:get/get.dart';
 import 'package:prezentycardmodule/util/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-import '../models/user.dart';
 import '../models/usermodel.dart';
-import 'notifications.dart';
+
+
 
 class SharedPrefs {
   static late SharedPreferences _preferences;
@@ -34,7 +33,7 @@ class SharedPrefs {
   static init() async {
     _preferences = await SharedPreferences.getInstance();
 
-    User.set(
+    UserModule.set(
       getString(spToken),
       getString(spUserId),
       getString(spName),
@@ -62,10 +61,10 @@ class SharedPrefs {
 
   static Future<bool> logIn(
       bool needRemember, UserSignUpResponse response) async {
-    if (response.userDetails == null) return false;
+    if (response.user == null) return false;
 
-    String token = response.apiToken ?? User.apiToken;
-    UserDetails userDetails = response.userDetails!;
+    String token = response.token ?? UserModule.apiToken;
+    User userDetails = response.user!;
 
     if (needRemember) {
       await setBool(spAutoLogin, true);
@@ -73,15 +72,8 @@ class SharedPrefs {
       await setString(spUserId, '${userDetails.id ?? ''}');
       await setString(spEmail, '${userDetails.email ?? ''}');
       await setString(spName, '${userDetails.name ?? ''}');
-      await setString(spMobile, '${userDetails.phoneNumber ?? ''}');
-      await setString(spAddress, '${userDetails.address ?? ''}');
-      await setString(spRole, '${userDetails.role ?? ''}');
-      await setString(
-          spImageUrl, '${response.baseUrl}${userDetails.imageUrl ?? ''}');
-          await setString(spHappyCardId, '${userDetails.hiCardId ?? ''}');
-          await setString(spHiCardNo, '${userDetails.hiCardNo ?? ''}');
-          await setString(spHiCardPin, '${userDetails.hiCardPin ?? ''}');
-          await setString(spHiCardBalance, '${userDetails.hiCardBalance?? ''}');
+
+
 
       // await setString(spCountryCode, '${userDetails.countryCode ?? ''}');
       // await setString(spPhone, '${userDetails.phoneNumber ?? ' '}');
@@ -92,19 +84,12 @@ class SharedPrefs {
 
    // Notifications.setUserId(userDetails.email!);
 
-    User.set(
+    UserModule.set(
       token,
       '${userDetails.id ?? ''}',
       '${userDetails.name ?? ''}',
-      '${userDetails.email ?? ''}',
-      '${userDetails.role ?? ''}',
-      '${response.baseUrl}${userDetails.imageUrl ?? ''}',
-      '${userDetails.phoneNumber ?? ''}',
-      '${userDetails.address ?? ''}',
-      '${userDetails.hiCardId ?? ''}',
-      '${userDetails.hiCardNo ?? ''}',
-      '${userDetails.hiCardPin ?? ''}',
-      '${userDetails.hiCardBalance ?? ''}',
+      '${userDetails.email ?? ''}'
+"","","","","","","","","",
       // userDetails.hasMPin ?? false,
     );
     return true;
@@ -112,7 +97,7 @@ class SharedPrefs {
 
   static Future<bool> logOut() async {
     await _preferences.clear();
-    User.set('', '', '', '', '', '', '', '','','','','');
+    UserModule.set('', '', '', '', '', '', '', '','','','','');
    // Notifications.removeUserId();
     //Freshchat.resetUser();
    // Get.offAll(() => WithoutLoginHomeScreen(), transition: Transition.fade);

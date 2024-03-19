@@ -4,10 +4,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:prezentycardmodule/network/app_dialouges.dart';
+import 'package:prezentycardmodule/screens/homescreen.dart';
 import 'package:prezentycardmodule/screens/login/signup.dart';
 import 'package:prezentycardmodule/screens/mainscreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../bloc/auth_bloc.dart';
 import '../../models/usermodel.dart';
 import '../../util/app_helper.dart';
 import '../../util/app_textBox.dart';
@@ -30,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextFieldControl _textFieldControlEmail = TextFieldControl();
   TextFieldControl _textFieldControlPassword = TextFieldControl();
 
-//  AuthBloc _authBloc = AuthBloc();
+  AuthBloc _authBloc = AuthBloc();
   DateTime? currentBackPressTime;
 
   @override
@@ -61,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [Colors.yellow,Colors.indigo.shade900,],
+                colors: [Colors.teal,Colors.teal.shade900, ],
               ),
             ),
           ),
@@ -86,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.topLeft,
-                        colors:  [Colors.yellow,Colors.indigo.shade900,],
+                        colors: [Colors.teal,Colors.teal.shade900, ],
                       ),
                     ),
                     padding: EdgeInsets.only(top: 0, left: 15, right: 15),
@@ -207,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Material(
                       borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      color:Colors.indigo.shade800,
+                      color:Colors.teal.shade800,
                       child: InkWell(
                         borderRadius:
                         const BorderRadius.all(Radius.circular(8)),
@@ -221,7 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        onTap: (){Get.to(()=>MainScreen());},
+                        onTap: _validate,
                       ),
                     ),
                     Padding(
@@ -361,7 +364,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Container(
                                     padding: const EdgeInsets.all(10),
                                     decoration: BoxDecoration(
-                                      color: Colors.indigo,
+                                      color: Colors.teal,
                                       borderRadius: const BorderRadius.all(
                                         Radius.circular(60),
                                       ),
@@ -408,37 +411,33 @@ class _LoginScreenState extends State<LoginScreen> {
       toastMessage(password.isValidPassword()['message']);
       _textFieldControlPassword.focusNode.requestFocus();
     } else {
-   //   _login(email, password);
+      _login(email, password);
     }
   }
   //
-  // Future _login(String email, String password) async {
-  // //  AppDialogs.loading();
-  //
-  //   Map<String, dynamic> body = {};
-  //   body["email"] = email;
-  //   body["password"] = password;
-  //
-  //   try {
-  //     UserSignUpResponse response = await _authBloc.login(json.encode(body));
-  //     Get.back();
-  //     if (response.success!) {
-  //       await SharedPrefs.logIn(_isRememberMeChecked, response);
-  //       if (widget.isFromWoohoo) {
-  //         Get.close(1);
-  //       } else {
-  //        // goToHomeScreen(showCheckMpin: false);
-  //         // Get.offAll(() => MainScreen());
-  //       }
-  //     } else {
-  //       toastMessage('${response.message!}');
-  //     }
-  //   } catch (e, s) {
-  //     Completer().completeError(e, s);
-  //     Get.back();
-  //     toastMessage('Something went wrong. Please try again');
-  //   }
-  // }
+  Future _login(String email, String password) async {
+   AppDialogs.loading();
+
+    Map<String, dynamic> body = {};
+    body["email"] = email;
+    body["password"] = password;
+
+    try {
+      UserSignUpResponse response = await _authBloc.login(json.encode(body));
+      Get.back();
+      if (response.success== true) {
+        await SharedPrefs.logIn(_isRememberMeChecked, response);
+        AppDialogs.closeDialog();
+Get.offAll(()=>MainScreen());
+      } else {
+        toastMessage('${response.message!}');
+      }
+    } catch (e, s) {
+      Completer().completeError(e, s);
+      Get.back();
+      toastMessage('Something went wrong. Please try again');
+    }
+  }
 
 // Future _socialLogin(String email, String name) async {
 //   AppDialogs.loading();

@@ -9,8 +9,13 @@ import 'package:get/get.dart';
 import 'package:prezentycardmodule/util/string_validator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../bloc/auth_bloc.dart';
+import '../../models/usermodel.dart';
 import '../../util/app_helper.dart';
 import '../../util/app_textBox.dart';
+import '../../util/shared_prefs.dart';
+import '../mainscreen.dart';
+import 'loginscreen.dart';
 
 
 class SignUpScreen extends StatefulWidget {
@@ -35,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   String _countryCode = '+91';
 
- // AuthBloc _authBloc = AuthBloc();
+  AuthBloc _authBloc = AuthBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -261,34 +266,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ],
                         ),
 
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 6),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Text(
-                                'Address',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              AppTextBox(
-                                textFieldControl: _textFieldControlAddress,
-                                prefixIcon: Icon(Icons.location_on_outlined),
-                                hintText: 'Address',
-                                maxLines: 3,
-                              ),
-                              SizedBox(
-                                height: 2,
-                              ),
-                              Text(
-                                  "Please prevent the following special characters while you enter your address.\n @,#,%,\$,\&,+,=,*,"
-                                      ",!",
-                                  style: TextStyle(color: Colors.red.shade300)),
-                            ],
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.symmetric(vertical: 6),
+                        //   child: Column(
+                        //     crossAxisAlignment: CrossAxisAlignment.stretch,
+                        //     children: [
+                        //       Text(
+                        //         'Address',
+                        //         style: TextStyle(
+                        //           color: Colors.grey,
+                        //           fontSize: 16,
+                        //         ),
+                        //       ),
+                        //       AppTextBox(
+                        //         textFieldControl: _textFieldControlAddress,
+                        //         prefixIcon: Icon(Icons.location_on_outlined),
+                        //         hintText: 'Address',
+                        //         maxLines: 3,
+                        //       ),
+                        //       SizedBox(
+                        //         height: 2,
+                        //       ),
+                        //       Text(
+                        //           "Please prevent the following special characters while you enter your address.\n @,#,%,\$,\&,+,=,*,"
+                        //               ",!",
+                        //           style: TextStyle(color: Colors.red.shade300)),
+                        //     ],
+                        //   ),
+                        // ),
 
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 6),
@@ -390,7 +395,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                         Material(
                           borderRadius: const BorderRadius.all(Radius.circular(8)),
-                          color: secondaryColor,
+                          color: Colors.teal,
                           child: InkWell(
                             borderRadius:
                             const BorderRadius.all(Radius.circular(8)),
@@ -515,14 +520,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     } else if (!phone.isValidMobileNumber()) {
       _validationFailed(
           'Please provide a valid phone number', _textFieldControlPhone);
-    } else if (address.isEmpty) {
-      _validationFailed(
-          'Please provide your address', _textFieldControlAddress);
-    } else if (!_addressRegExp.hasMatch(address)) {
-      _validationFailed(
-          'Please prevent @,#,%,\$,\&,+,=,*,"",! while entering your address',
-          _textFieldControlAddress);
-    } else if (!password.isValidPassword()['isValid']) {
+    }
+     else if (!password.isValidPassword()['isValid']) {
       _validationFailed(
           password.isValidPassword()['message'], _textFieldControlPassword);
     } else if (!rePassword.isValidPassword()['isValid']) {
@@ -533,16 +532,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
     } else {
    //   dynamic b = await initVerifyMobileEmail(email, phone, false);
       //if (b != null) {
-        // _signUp(
-        //   email,
-        //   '$firstName  $lastName',
-        //   phone,
-        //   address,
-        //   password,
-        //   salesPersonName,
-        //   isEmail: b["emailOtp"],
-        //   isMobile: b["mobileOtp"],
-        // );
+        _signUp(
+          email,
+          '$firstName',
+          "$lastName",
+          phone,
+          password,
+            rePassword
+
+        );
      // }
     }
   }
@@ -555,41 +553,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
     textFieldControl.focusNode.requestFocus();
   }
 
-  // Future _signUp(String email, String name, String phone, String address,
-  //     String password, String salesPersonName,
-  //     {bool? isEmail, bool? isMobile}) async {
-  //   AppDialogs.loading();
-  //
-  //   Map<String, dynamic> body = {};
-  //
-  //
-  //   try {
-  //     UserSignUpResponse response =
-  //     await _authBloc.userRegistration(json.encode(body));
-  //     Get.back();
-  //     if (response.success!) {
-  //       await SharedPrefs.logIn(true, response);
-  //       if (widget.isFromWoohoo) {
-  //         Get.back();
-  //         Get.back();
-  //       } else {
-  //         String? imgUrl = await AuthBloc().getPopupImage();
-  //         Get.offAll(() => MainScreen(
-  //           fromSignUp: true,
-  //         ));
-  //         if (imgUrl != null) {
-  //           AppDialogs.homePopupImage(imgUrl);
-  //         }
-  //       }
-  //     } else {
-  //       toastMessage('${response.message!}');
-  //     }
-  //   } catch (e, s) {
-  //     Completer().completeError(e, s);
-  //     Get.back();
-  //     toastMessage('Something went wrong. Please try again');
-  //   }
-  // }
+  Future _signUp(String email, String fname,String lname, String phone,
+      String password, String confirmpassword
+     ) async {
+    //AppDialogs.loading();
+
+    Map<String, dynamic> body = {
+
+    };
+
+    body["first_name"]=fname;
+    body["last_name"]=lname;
+    body["phone"]=phone;
+    body["email"]=email;
+    body["password"]=password;
+    body["password_confirmation"]=confirmpassword;
+    print("body<>${body}");
+    try {
+      UserSignUpResponse response =
+      await _authBloc.userRegistration(json.encode(body));
+      Get.back();
+      if (response.success!) {
+        await SharedPrefs.logIn(true, response);
+
+
+        Get.offAll(() =>
+            LoginScreen());
+      }else {
+        toastMessage('${response.message!}');
+      }
+    } catch (e, s) {
+      Completer().completeError(e, s);
+      Get.back();
+      toastMessage('Something went wrong. Please try again');
+    }
+  }
 }
 
 // Future<dynamic> initVerifyMobileEmail(
