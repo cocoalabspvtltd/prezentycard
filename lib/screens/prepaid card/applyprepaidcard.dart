@@ -5,6 +5,7 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:prezentycardmodule/screens/prepaid%20card/applykyc.dart';
+import 'package:prezentycardmodule/screens/prepaid%20card/prepaidcardofferlist.dart';
 import 'package:prezentycardmodule/util/user.dart';
 
 import '../../bloc/walletbloc/wlalet.dart';
@@ -252,9 +253,9 @@ class _ApplyprepaidcardlistState extends State<Applyprepaidcardlist> {
               ),
               GestureDetector(
                 onTap: () {
-                  // Get.to(() => PrepaidCardOfferListScreen(
-                  //   cardId: cardDetailsData.id!,
-                  // ));
+                  Get.to(() => PrepaidCardOfferListScreen(
+                    cardId: cardDetailsData.id!,
+                  ));
                 },
                 child: Container(
                   width: screenWidth - 30,

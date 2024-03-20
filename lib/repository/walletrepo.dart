@@ -38,4 +38,10 @@ class WalletRepository{
     return RegisterWalletResponse.fromJson(jsonDecode(response.data));
   }
 
+  Future<GetAllAvailableCardListResponse> GetCardOffers(int? cardId) async {
+    final response = await apiClient
+        .getJsonInstance()
+        .get('api/prepaid-cards/offers/${cardId}/list', );
+    return GetAllAvailableCardListResponse.fromJson(response.data);
+  }
 }

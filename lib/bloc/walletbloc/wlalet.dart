@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:prezentycardmodule/models/getcardlistresp.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../models/getoffer.dart';
 import '../../models/regiwalletrespo.dart';
 import '../../models/statecode.dart';
 import '../../network/api_error_message.dart';
@@ -23,7 +24,8 @@ class WalletBloc {
     StreamController<ApiResponse<dynamic>>.broadcast();
     _getStateListController =
     StreamController<ApiResponse<StateCodeResponse>>.broadcast();
-
+    _getCardOfferListController =
+        StreamController<ApiResponse<GetAllAvailableCardListResponse>>();
 
   }
 
@@ -72,8 +74,18 @@ class WalletBloc {
   Stream<ApiResponse<StateCodeResponse>> get getStateListStream =>
       _getStateListController.stream;
 
-//------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
+  late StreamController<ApiResponse<GetAllAvailableCardListResponse>>
+  _getCardOfferListController;
+
+  StreamSink<ApiResponse<GetAllAvailableCardListResponse>> get _getCardOfferListSink =>
+      _getCardOfferListController.sink;
+
+  Stream<ApiResponse<GetAllAvailableCardListResponse>> get getCardOfferListStream =>
+      _getCardOfferListController.stream;
+
+//------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 //   late StreamController<ApiResponse<GetCardOffersResponse>>
 //   _getCardOfferListController;
@@ -254,4 +266,22 @@ class WalletBloc {
 
 
 
+  getCardOfferList(int cardId) async {
+    try {
+      _getCardOfferListSink.add(ApiResponse.loading('Fetching'));
+
+      GetAllAvailableCardListResponse response =
+      await _walletRepository!.GetCardOffers(cardId);
+      if (response.success ?? false) {
+        _getCardOfferListSink.add(ApiResponse.completed(response));
+      } else {
+        _getCardOfferListSink
+            .add(ApiResponse.error(response.message ?? 'Something went wrong'));
+      }
+    } catch (e, s) {
+      Completer().completeError(e, s);
+      _getCardOfferListSink
+          .add(ApiResponse.error("d"));
+    }
+  }
 }
