@@ -95,16 +95,16 @@ class _SplashScreenState extends State<SplashScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  // Center(
-                  //   child: AnimatedContainer(
-                  //     width: iconWidth,
-                  //     duration: Duration(milliseconds: 400),
-                  //     child: Image.asset(
-                  //       'assets/images/ic_logo.png',
-                  //       fit: BoxFit.fill,
-                  //     ),
-                  //   ),
-                  // ),
+                  Center(
+                    child: AnimatedContainer(
+                      width: iconWidth,
+                      duration: Duration(milliseconds: 400),
+                      child: Image.asset(
+                        'asset/image/ic_logo.png',
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
                   Center(
                     child: SizedBox(
                       height: 26,
