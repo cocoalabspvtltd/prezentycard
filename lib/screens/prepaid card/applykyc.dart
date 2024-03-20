@@ -1796,7 +1796,7 @@ class _ApplyKycScreenState extends State<ApplyKycScreen> {
         "address2": permanentAddress2Control.text,
         "address3": permanentAddress3Control.text,
         "city": permanentcityControl.text,
-        "state_code": state,
+        "state_id": state,
         "country": countryControl.text,
         "pinCode": permanentpinNumberControl.text
       },
@@ -1884,9 +1884,8 @@ class _ApplyKycScreenState extends State<ApplyKycScreen> {
     body["employmentType"] = _employmentTypeValue;
     // body["aadhaar_number"] = aadhaarNumber;
     // body["rzr_pay_id"] = widget.razorPayId!;
-    body["referred_by"] = UserModule.userId;
-    body["prepaid_card_id"] = 5;
-    body["txn_tbl_id"] = 1116;
+    body["referred_by"] = "";
+    body["prepaid_card_id"] = widget.cardId;
     body["gender"] = gender!.toUpperCase();
     body["addressInfo"] = addressInfo;
     body["communicationInfo"] = communicationInfo;
