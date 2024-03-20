@@ -60,7 +60,7 @@ class _MainScreenState extends State<MainScreen> {
             leading: IconButton(
                 icon: Icon(
                   CupertinoIcons.text_alignleft,
-                  color: Colors.white,
+                  color: secondaryColor,
                   size: 30,
                 ),
                 splashRadius: 24,
@@ -76,13 +76,13 @@ class _MainScreenState extends State<MainScreen> {
                     '1',
                     style:TextStyle(
                       fontFamily: 'Poppins',
-                      color: Colors.white,
+                      color: secondaryColor,
                     ),
                   ),
                   showBadge: true,
                   child: IconButton(
                     icon: Icon(
-                      Icons.notifications_none_rounded,size: 35,
+                      Icons.notifications_none_rounded,size: 35,color: secondaryColor,
                     ),
                     onPressed: () {
                 //      Get.to(() => NotificationScreen());
@@ -118,7 +118,7 @@ class _MainScreenState extends State<MainScreen> {
                           image: AssetImage(
                             'asset/image/ic_avatar.png',
                           ),
-                          color: Colors.white,
+                          color: secondaryColor,
                         ),
                       ),
                     ),

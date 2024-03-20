@@ -64,7 +64,7 @@ class _SelectCountryDialogScreenState extends State<SelectCountryDialogScreen> {
                   Container(
                     margin: EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.teal),
+                      border: Border.all(color: primaryColor),
                       borderRadius: const BorderRadius.all(Radius.circular(8)),
                     ),
                     child: TextField(

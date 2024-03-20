@@ -82,7 +82,6 @@ class _CommonAppBarWidgetState extends State<CommonAppBarWidget> {
                 radius: 25,
                 child:Image.network("${widget.image}")
 
-
                 // CachedNetworkImage(
                 //   fit: BoxFit.cover,
                 //   imageUrl:'${widget.image}',

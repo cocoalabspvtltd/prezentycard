@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [Colors.teal ,Colors.teal.shade900, ],
+                colors: [primaryColor,primaryColor ],
               ),
             ),
           ),
@@ -89,7 +89,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.topLeft,
-                        colors: [Colors.teal,Colors.teal.shade900, ],
+                        // colors: [Colors.teal,Colors.teal.shade900, ],
+                        colors: [primaryColor,primaryColor],
                       ),
                     ),
                     padding: EdgeInsets.only(top: 0, left: 15, right: 15),
@@ -97,13 +98,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: screenHeight * 0.2,
                   ),
                   Positioned(
-                    left: 40,
+                    left: 50,
                     top: 20,
                     child: Text("PREZENTY CARD APP",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: secondaryColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20)),
+                            fontSize: 25)),
                   ),
                   // Positioned(
                   //     left: 150,
@@ -169,6 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       children: [
                         Checkbox(
+                          checkColor: secondaryColor,
                             value: _isRememberMeChecked,
                             onChanged: (b) {
                               setState(() {
@@ -210,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Material(
                       borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      color:Colors.teal.shade800,
+                      color:primaryColor,
                       child: InkWell(
                         borderRadius:
                         const BorderRadius.all(Radius.circular(8)),
@@ -220,7 +222,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               'Log In',
                               style:
-                              TextStyle(color: Colors.white, fontSize: 16),
+                              TextStyle(color: secondaryColor, fontSize: 16),
                             ),
                           ),
                         ),
@@ -364,13 +366,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Container(
                                     padding: const EdgeInsets.all(10),
                                     decoration: BoxDecoration(
-                                      color: Colors.teal,
+                                      color: primaryColor,
                                       borderRadius: const BorderRadius.all(
                                         Radius.circular(60),
                                       ),
                                     ),
                                     child: Icon(Icons.arrow_forward_ios_rounded,
-                                        color: Colors.white))
+                                        color: secondaryColor))
                               ],
                             ),
                           ),

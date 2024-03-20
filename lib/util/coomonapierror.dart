@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:prezentycardmodule/util/app_helper.dart';
 
 class CommonApiErrorWidget extends StatelessWidget {
   final String text;
@@ -31,7 +32,7 @@ class CommonApiErrorWidget extends StatelessWidget {
         SizedBox(height: 8),
         MaterialButton(
           height: 40,
-          color: Colors.teal,
+          color: primaryColor,
           shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(15)),
           onPressed: buttonHandler,
@@ -46,7 +47,7 @@ class CommonApiErrorWidget extends StatelessWidget {
               "Retry",
               style: TextStyle(
                   fontSize: 14,
-                  color: Colors.white,
+                  color: secondaryColor,
                   fontWeight: FontWeight.w500),
             ),
           ),

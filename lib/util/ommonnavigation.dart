@@ -143,7 +143,7 @@ class _CommonBottomNavigationWidgetState extends State<CommonBottomNavigationWid
                             blendMode: BlendMode.srcIn,
                             shaderCallback: (Rect bounds) {
                               return LinearGradient(
-                                colors: [Colors.teal, Colors.teal.shade900],
+                                colors: [primaryColor,primaryColor],
                                 tileMode: TileMode.mirror,
                               ).createShader(bounds);
                             },

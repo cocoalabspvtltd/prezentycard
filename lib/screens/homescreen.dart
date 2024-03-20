@@ -144,11 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 100,
                                 height: 50,
                                 decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors:[Colors.teal,Colors.teal.shade900, ],
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                    ),
+                                    color: primaryColor,
                                     borderRadius:
                                     BorderRadius.circular(40.0)),
                                 child: OutlinedButton(
@@ -168,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       "Get your card",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: secondaryColor,
                                       ),
                                     ),
                                   ),

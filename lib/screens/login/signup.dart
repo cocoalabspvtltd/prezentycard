@@ -395,7 +395,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                         Material(
                           borderRadius: const BorderRadius.all(Radius.circular(8)),
-                          color: Colors.teal,
+                          color: primaryColor,
                           child: InkWell(
                             borderRadius:
                             const BorderRadius.all(Radius.circular(8)),
@@ -405,7 +405,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 child: Text(
                                   'Sign Up',
                                   style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
+                                  TextStyle(color: secondaryColor, fontSize: 16),
                                 ),
                               ),
                             ),
