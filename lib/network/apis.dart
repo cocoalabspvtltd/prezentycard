@@ -99,7 +99,7 @@ class Apis {
   static String setWalletPin = "api/set-mpin";
   static String forgetWalletPinSendOtp = "api/forget-mpin";
   static String resetWalletPin = "api/reset-mpin";
-  static String getStateCode = "api/state-list";
+  static String getStateCode = "api/states";
 
   static String getAllAvailableCardList = "api/prepaid-cards/list";
   static String getCardOffers = "api/card-offer-list";
@@ -108,7 +108,7 @@ class Apis {
   static String replaceCardNow="api/prepaid/cards/replace-card";
 
   static String walletCreationAndPaymentStatus = "api/check-paid-wallet-status";
-  static String registerWallet = "api/prepaid/cards/wallet-registration";
+  static String registerWallet = "api/prepaid-cards/wallet-registration";
   static String verifyWalletRegistrationOtp = "api/verify-registration";
      static String walletRegistrationResendOtp = "api/resend-otp";
   static String getWalletDetails = "api/prepaid/cards/wallet-details";

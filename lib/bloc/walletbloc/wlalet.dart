@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:prezentycardmodule/models/getcardlistresp.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../models/regiwalletrespo.dart';
+import '../../models/statecode.dart';
 import '../../network/api_error_message.dart';
 import '../../network/api_response.dart';
 import '../../network/app_dialouges.dart';
@@ -19,6 +21,8 @@ class WalletBloc {
     if (_walletRepository == null) _walletRepository = WalletRepository();
     _getAvailableCardListController =
     StreamController<ApiResponse<dynamic>>.broadcast();
+    _getStateListController =
+    StreamController<ApiResponse<StateCodeResponse>>.broadcast();
 
 
   }
@@ -59,6 +63,16 @@ class WalletBloc {
 
   Stream<ApiResponse<dynamic>> get getAvailableCardListStream =>
       _getAvailableCardListController.stream;
+  //------------------------------------------------------------------------------
+  late StreamController<ApiResponse<StateCodeResponse>> _getStateListController;
+
+  StreamSink<ApiResponse<StateCodeResponse>> get _getStateListSink =>
+      _getStateListController.sink;
+
+  Stream<ApiResponse<StateCodeResponse>> get getStateListStream =>
+      _getStateListController.stream;
+
+//------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 //   late StreamController<ApiResponse<GetCardOffersResponse>>
@@ -208,7 +222,35 @@ class WalletBloc {
   }
 
 
+  Future<StateCodeResponse?> getStateList() async {
+    try {
+      _getStateListSink.add(ApiResponse.loading('Fetching'));
 
+      StateCodeResponse response = await _walletRepository!.getStateList();
+      if (response.success ?? false) {
+        _getStateListSink.add(ApiResponse.completed(response));
+        return response;
+      } else {
+        _getStateListSink
+            .add(ApiResponse.error(response.message ?? 'Something went wrong'));
+      }
+    } catch (e, s) {
+      Completer().completeError(e, s);
+      _getStateListSink
+          .add(ApiResponse.error("cx"));
+    }
+    return null;
+  }
+  Future<RegisterWalletResponse> registerWallet(Map<String, dynamic> body) async {
+    try {
+      RegisterWalletResponse response =
+      await _walletRepository!.registerWallet(body);
+      return response;
+    } catch (e, s) {
+      Completer().completeError(e, s);
+      throw e;
+    }
+  }
 
 
 

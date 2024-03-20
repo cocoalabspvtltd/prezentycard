@@ -50,7 +50,7 @@ class _MainScreenState extends State<MainScreen> {
                 gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  colors: [Colors.teal,Colors.teal.shade900, ],
+                  colors: [Colors.yellow, Color(0xffad9c00)],
                 ),
               ),
             ),

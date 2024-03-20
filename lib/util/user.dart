@@ -42,7 +42,6 @@ class UserModule {
 
     userName = name;
     userEmail = email;
- //   ChatData.chatUserEmail = email;
     userRole = role;
     userMobile = mobile;
     userAddress = address;
