@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: screenHeight * 0.2,
                   ),
                   Positioned(
-                    left: 80,
+                    left: 40,
                     top: 20,
                     child: Text("PREZENTY CARD APP",
                         style: TextStyle(
