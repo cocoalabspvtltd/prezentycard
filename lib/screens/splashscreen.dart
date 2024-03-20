@@ -38,13 +38,14 @@ class _SplashScreenState extends State<SplashScreen> {
       // iconWidth = screenWidth * .2;
       // showProgress = true;
       // setState(() {});
-      Timer(Duration(milliseconds: 2200), () {
-        // Navigate to TaskScreen
-        Get.offAll(() => LoginScreen(), transition: Transition.fade);
+      Future.delayed(const Duration(milliseconds: 2200), () {
+        if (UserModule.apiToken.isEmpty) {
+          Get.offAll(() =>  LoginScreen(), transition: Transition.fade);
+        } else {
+          Get.offAll(() =>  MainScreen(), transition: Transition.fade);
+        }
       });
-      // SharedPreferences.setMockInitialValues({});
-
-      if (UserModule.apiToken.isEmpty) await SharedPrefs.init();
+      // if (UserModule.apiToken.isEmpty) await SharedPrefs.init();
    //   await EventData.initPath();
       await SharedPrefs.init();
       showProgress = true;
