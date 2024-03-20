@@ -28,7 +28,7 @@ String termsAndConditionsCardUrl =
 String termsAndConditionsUrl = "https://prezenty.in/Terms_of_use.pdf";
 String privacyPolicyUrl = "https://prezenty.in/privacy_Policy.pdf";
 
-MaterialColor primaryColor = MaterialColor(int.parse("0xffd0006f"), {
+MaterialColor primaryColor = MaterialColor(int.parse("0xff000000"), {
   50: Color(0xfffde5f0),
   100: Color(0xfffabdd9),
   200: Color(0xfff991c0),
@@ -41,7 +41,7 @@ MaterialColor primaryColor = MaterialColor(int.parse("0xffd0006f"), {
   900: Color(0xff940062),
 });
 
-MaterialColor secondaryColor = MaterialColor(int.parse("0xff02075f"), {
+MaterialColor secondaryColor = MaterialColor(int.parse("0xffad9c00"), {
   50: Color(0xffe5e6f2),
   100: Color(0xffbebfde),
   200: Color(0xff9396c7),

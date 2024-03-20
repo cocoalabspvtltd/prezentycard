@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:prezentycardmodule/util/app_helper.dart';
 
 import '../models/usermodel.dart';
 
@@ -36,7 +37,7 @@ class _CommonAppBarWidgetState extends State<CommonAppBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.teal,
+      color: primaryColor,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -48,7 +49,7 @@ class _CommonAppBarWidgetState extends State<CommonAppBarWidget> {
               icon: Icon(
                 Icons.arrow_back,
                 size: 25,
-                color: Colors.white,
+                color: secondaryColor,
               ),
               onPressed: widget.onPressedFunction,
             ),
@@ -77,7 +78,7 @@ class _CommonAppBarWidgetState extends State<CommonAppBarWidget> {
                //Get.to(() => ProfileDetailsScreen());
               },
               child: CircleAvatar(
-                backgroundColor: Colors.black87,
+                backgroundColor: secondaryColor,
                 radius: 25,
                 child:Image.network("${widget.image}")
 

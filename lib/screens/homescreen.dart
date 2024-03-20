@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.topLeft,
-                        colors:[Colors.teal,Colors.teal.shade900, ],
+                        colors:[primaryColor,primaryColor ],
                       ),
                     ),
                     padding: EdgeInsets.only(top: 10, left: 15, right: 15),
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   bottom: 25, top: 10, left: 30),
                               child: Text('HELLO   ${UserModule.userName.toUpperCase()}',
                                   style: TextStyle(
-                                      color: Colors.white,
+                                      color: secondaryColor,
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold)),
                             ),

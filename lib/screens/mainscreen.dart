@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
                 gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  colors: [Colors.yellow, Color(0xffad9c00)],
+                  colors: [Colors.black, Colors.black],
                 ),
               ),
             ),
@@ -116,7 +116,7 @@ class _MainScreenState extends State<MainScreen> {
                       errorWidget: (context, url, error) => Center(
                         child: Image(
                           image: AssetImage(
-                            'assets/images/ic_avatar.png',
+                            'asset/image/ic_avatar.png',
                           ),
                           color: Colors.white,
                         ),
