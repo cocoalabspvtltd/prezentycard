@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:http/http.dart' as http;
+import 'package:prezentycardmodule/screens/profile/profile_screen.dart';
 
 import '../util/app_helper.dart';
 import '../util/commondrawer.dart';
@@ -209,11 +210,11 @@ class _MainScreenState extends State<MainScreen> {
               }
             },
           ),
-          body: _currentTab == 0 ?
-
-
-                HomeScreen():
-              Container(),
-    ));
+          body:_currentTab == 0 ?
+          // widget.fromSignUp?
+          // SignUpCompletedScreen()
+                HomeScreen()
+              : ProfileScreen()),
+    );
   }
 }

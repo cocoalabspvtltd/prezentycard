@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:prezentycardmodule/screens/profile/profile_screen.dart';
 
 import '../screens/mainscreen.dart';
 import 'app_helper.dart';
@@ -197,33 +198,33 @@ class _CommonBottomNavigationWidgetState extends State<CommonBottomNavigationWid
           //             ),
           //           )),
           //     )),
-          // Expanded(
-          //     child: Material(
-          //       color: Colors.transparent,
-          //       child: InkWell(
-          //           onTap: () async {
-          //             // await showDialog(
-          //             //   context: context,
-          //             //   builder:  (_) => imageDialog( context));
-          //        //     Get.to(() => ProfileScreen());
-          //           },
-          //           child: SizedBox(
-          //             height: 50,
-          //             child: Column(
-          //               mainAxisAlignment: MainAxisAlignment.center,
-          //               children: [
-          //                 Icon(Icons.more_horiz, color: Colors.grey, size: 32),
-          //                 SizedBox(
-          //                   height: 3,
-          //                 ),
-          //                 Text(
-          //                   "More",
-          //                   style: TextStyle(color: Colors.black, fontSize: 10),
-          //                 ),
-          //               ],
-          //             ),
-          //           )),
-          //     )),
+          Expanded(
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                    onTap: () async {
+                      // await showDialog(
+                      //   context: context,
+                      //   builder:  (_) => imageDialog( context));
+                      Get.to(() => ProfileScreen());
+                    },
+                    child: SizedBox(
+                      height: 50,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.person_outline, color: Colors.grey, size: 32),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            "Profile",
+                            style: TextStyle(color: Colors.black, fontSize: 10),
+                          ),
+                        ],
+                      ),
+                    )),
+              )),
         ],
       ),
     );
