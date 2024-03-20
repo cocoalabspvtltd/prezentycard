@@ -262,7 +262,7 @@ class _ApplyprepaidcardlistState extends State<Applyprepaidcardlist> {
                   height: 50,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Colors.teal,Colors.teal.shade900, ],
+                        colors: [primaryColor,primaryColor],
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                       ),
@@ -273,7 +273,7 @@ class _ApplyprepaidcardlistState extends State<Applyprepaidcardlist> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
-                            color: Colors.white),
+                            color: secondaryColor),
                       )),
                 ),
               ),
@@ -291,7 +291,7 @@ class _ApplyprepaidcardlistState extends State<Applyprepaidcardlist> {
             width: screenWidth,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.teal,Colors.teal.shade900, ],
+                  colors: [primaryColor,primaryColor ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
@@ -303,7 +303,7 @@ class _ApplyprepaidcardlistState extends State<Applyprepaidcardlist> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.white),
+                    color: secondaryColor),
               ),
             ),
           ),
